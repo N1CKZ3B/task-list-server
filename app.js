@@ -15,7 +15,10 @@ app.get("/" , (req,res) => {
     res.sendFile(path.join(__dirname,'public','index.html'));
 });
 
-
+app.get('/about', function (req, res) {
+    res.send('about');
+ });
+ 
 app.listen(port, () => {
     console.log("Listening...");
 });

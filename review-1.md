@@ -1,6 +1,6 @@
 # ¿Qué es mi producto y para qué sirve?
 
-Mi producto es un servidor de listas de tareas, diseñado para ayudar a los usuarios a organizar y gestionar sus tareas diarias de manera eficiente. Con este servidor, los usuarios pueden crear, actualizar y eliminar tareas, así como asignar prioridades y fechas de vencimiento.
+Mi producto es un servidor de listas de tareas, diseñado para ayudar a los usuarios a organizar y gestionar sus tareas diarias de manera eficiente. Con este servidor, los usuarios pueden crear, actualizar y eliminar tareas.
 
 # ¿Cuáles son las funcionalidades más importantes y por qué los usuarios las usarían?
 

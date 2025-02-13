@@ -9,9 +9,12 @@ const tasks = [
 ];
 
 const listViewRouter = require("./list-view-router")(tasks);
+const listEditRouter = require("./list-edit-router")(tasks);
+
 
 app.use(express.json());
 app.use("/api", listViewRouter);
+app.use("/api/edit", listEditRouter);
 
 app.get("/tasks", (req, res) => {
     res.json(tasks);

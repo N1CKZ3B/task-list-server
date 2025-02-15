@@ -11,11 +11,19 @@ const tasks = [
 const listViewRouter = require("./list-view-router")(tasks);
 const listEditRouter = require("./list-edit-router");
 
+// Middleware para validar métodos HTTP
+const validHttpMethods = ['GET', 'POST', 'PUT', 'DELETE'];
+
+app.use((req, res, next) => {
+    if (!validHttpMethods.includes(req.method)) {
+        return res.status(405).json({ error: 'Método HTTP no permitido' });
+    }
+    next();
+});
 
 app.use(express.json());
 app.use("/api", listViewRouter);
 app.use("/api/edit", listEditRouter);
-
 
 app.get("/tasks", (req, res) => {
     res.json(tasks);

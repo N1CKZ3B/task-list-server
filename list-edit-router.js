@@ -55,7 +55,7 @@ module.exports = (tasks) => {
 
     router.delete('/tarea/:id', (req, res) => {
         const { id } = req.params;
-        const taskIndex = tasks.findIndex(task => task.id ===parseInt(id));
+        const taskIndex = tasks.findIndex(task => task.id ===parseInt(id) || task.id === id  );
 
         if (taskIndex === -1) {
             console.log(`IDs en tasks: ${tasks.map(task => task.id).join(', ')}`);

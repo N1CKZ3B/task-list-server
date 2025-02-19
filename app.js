@@ -9,7 +9,7 @@ const tasks = [
 ];
 
 const listViewRouter = require("./list-view-router")(tasks);
-const listEditRouter = require("./list-edit-router");
+const listEditRouter = require("./list-edit-router")(tasks);
 
 // Middleware para validar métodos HTTP
 const validHttpMethods = ['GET', 'POST', 'PUT', 'DELETE'];

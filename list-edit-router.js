@@ -19,6 +19,17 @@ module.exports = (tasks) => {
             }
         }
 
+        if (typeof body.id !== 'string') {
+            return res.status(400).json({ error: "El atributo 'id' debe ser un string" });
+        }
+
+        if (typeof body.isCompleted !== 'boolean') {
+            return res.status(400).json({ error: "El atributo 'isCompleted' debe ser un booleano" });
+        }
+
+        if (typeof body.description !== 'string') {
+            return res.status(400).json({ error: "El atributo 'description' debe ser un string" });
+        }
         next();
     };
 

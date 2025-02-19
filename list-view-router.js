@@ -5,7 +5,7 @@ module.exports = (tasks) => {
 
     // Middleware para validar parámetros
     const validateParams = (req, res, next) => {
-        const { id, status } = req.params;
+        const { id, status} = req.params;
 
         if (id && isNaN(parseInt(id))) {
             return res.status(400).json({ error: "El parámetro 'id' debe ser un número" });
@@ -24,7 +24,7 @@ module.exports = (tasks) => {
     });
 
     router.get("/task/:id",validateParams,(req, res) => {
-        const task = tasks.find(t => t.id === parseInt(req.params.id));
+        const task = tasks.find(t => t.id === parseInt(req.params.id) ||  t.id === req.params.id);
         if (!task) {
             return res.status(404).json({ error: "Tarea no encontrada" });
         }

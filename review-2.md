@@ -26,4 +26,4 @@ Estas tecnologías me permitieron crear un producto rápido, eficiente y fácil 
 
 A continuación se presenta un video que muestra como se ven los casos de exito y de verificación de parametros solicitados en el laboratorio
 
-<video controls src="20250215-2203-58.4477032.mp4" title="Sprint 2 Task List"></video>
+[<video controls src="20250215-2203-58.4477032.mp4" title="Sprint 2 Task List"></video>](https://raw.githubusercontent.com/N1CKZ3B/task-list-server/refs/heads/review-2/20250215-2203-58.4477032.mp4)

@@ -1,12 +1,13 @@
 const express = require('express');
+const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
 const router = express.Router();
-
+dotenv.config();
 module.exports = (tasks) => {
     const validateRequest = (req, res, next) => {
         const { method, body } = req;
         const requiredFields = ['id', 'isCompleted', 'description']; // Ajusta según sea necesario
 
-      
 
         if ((method === 'POST' || method === 'PUT') && (!body || Object.keys(body).length === 0)) {
             return res.status(400).json({ error: 'El cuerpo de la solicitud no puede estar vacío' });
@@ -31,6 +32,19 @@ module.exports = (tasks) => {
             return res.status(400).json({ error: "El atributo 'description' debe ser un string" });
         }
         next();
+    };
+
+    const authenticateToken = (req, res, next) => {
+        const authHeader = req.headers['authorization'];
+        const token = authHeader && authHeader.split(' ')[1];
+
+        if (token == null) return res.sendStatus(401);
+
+        jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+            if (err) return res.sendStatus(403);
+            req.user = user;
+            next();
+        });
     };
 
     router.post('/tarea', validateRequest, (req, res) => {
@@ -64,6 +78,11 @@ module.exports = (tasks) => {
 
         const deletedTask = tasks.splice(taskIndex, 1);
         res.json({ message: 'Tarea eliminada', task: deletedTask[0] });
+    });
+    
+    // Ruta protegida
+    router.get('/protected', authenticateToken, (req, res) => {
+        res.json({ message: 'Acceso a ruta protegida', user: req.user });
     });
 
     return router;

@@ -2,6 +2,9 @@ const express = require("express");
 const app = express();
 const port = 3002;
 const path = require("path");
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 const tasks = [
     { id: 1, isCompleted: false, description: "Reunion 8 AM" },
@@ -10,6 +13,7 @@ const tasks = [
 
 const listViewRouter = require("./list-view-router")(tasks);
 const listEditRouter = require("./list-edit-router")(tasks);
+const authRouter = require('./auth-router');
 
 // Middleware para validar métodos HTTP
 const validHttpMethods = ['GET', 'POST', 'PUT', 'DELETE'];
@@ -24,6 +28,7 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use("/api", listViewRouter);
 app.use("/api/edit", listEditRouter);
+app.use('/auth', authRouter);
 
 app.get("/tasks", (req, res) => {
     res.json(tasks);

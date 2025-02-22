@@ -19,8 +19,8 @@ module.exports = (tasks) => {
             }
         }
 
-        if (typeof body.id !== 'string') {
-            return res.status(400).json({ error: "El atributo 'id' debe ser un string" });
+        if (!Number.isInteger(body.id)) {
+            return res.status(400).json({ error: "El atributo 'id' debe ser un int" });
         }
 
         if (typeof body.isCompleted !== 'boolean') {
